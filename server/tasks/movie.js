@@ -1,6 +1,8 @@
 const cp = require('child_process')
 const { resolve } = require('path')
-const getData = require('./api')
+const mongoose = require('mongoose')
+const Movie = mongoose.model('Movie')
+// const getData = require('./api')
 
   ; (async () => {
     const script = resolve(__dirname, '../crawler/trailer-list')
@@ -23,7 +25,16 @@ const getData = require('./api')
     child.on('message', data => {
       let result = data.result
       // 获取详细信息
-      getData(result)
+      // getData(result)
+      result.forEach(async item => {
+        let movie = await Movie.findOne({
+          doubanId: item.doubanId
+        })
+        if (!movie) {
+          movie = new Movie(item)
+          await movie.save()
+        }
+      })
     })
 
   })()
