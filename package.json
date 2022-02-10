@@ -34,7 +34,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cssnext": "^1.8.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.19.0",
     "parcel-bundler": "^1.12.3",
     "transform-runtime": "0.0.0"
